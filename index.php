@@ -1,17 +1,30 @@
-<?php
-include("conecta.php"); 
-try{
-$sql = "INSERT INTO tb_contatos (text_nome,varchar_email) VALUES (:nome, :email)";
-$stmt = $pdo->prepare($sql);
+<!DOCTYPE html>
+<html lang="pt-br">
 
-$nome = "Maria Silva";
-$email = "maria@email.com";
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Contato</title>
+</head>
 
-$stmt->bindParam(':nome', $nome);
-$stmt->bindParam(':email', $email);
+<body>
+    <form id="formContato">
+        <input type="text" id="nome" name="nome" placeholder="Nome"><br><br>
+        <input type="email" id="email" name="email" placeholder="E-mail"><br><br>
+        <button type="submit">Enviar</button>
+    </form>
 
-$stmt->execute();
-} catch (PDOException $e){
-    echo "Erro ao inserir:" . $e->getMessage();
-}
-?>
+    <script>
+        document.getElementById('formContato').addEventListener('submit', function(e) {
+            e.preventDefault();
+            fetch('salvar.php', {
+                method: 'POST',
+                body: new FormData(this)
+            });
+        });
+    </script>
+
+</body>
+
+</html>
