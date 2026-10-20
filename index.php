@@ -3,28 +3,41 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulário de Contato</title>
+    <script src="https://jquery.com"></script>
+
 </head>
 
 <body>
-    <form id="formContato">
-        <input type="text" id="nome" name="nome" placeholder="Nome"><br><br>
-        <input type="email" id="email" name="email" placeholder="E-mail"><br><br>
-        <button type="submit">Enviar</button>
-    </form>
+    <input type="text" id="nome" name="nome"><br>
+    <input type="email" id="email" name="email"><br>
+    <button type="button" id="btnEnviar">Enviar</button>
 
     <script>
-        document.getElementById('formContato').addEventListener('submit', function(e) {
-            e.preventDefault();
-            fetch('salvar.php', {
-                method: 'POST',
-                body: new FormData(this)
+        $(document).ready(function(){
+            $("button").click(function() {
+                var nome = $("#nome").val();
+                var email = $("#email").val();
+
+                if (nome === "" || email === "") {
+                    alert("Por favor, preencha todos os campos.");
+                    return false;
+                }
+
+                $.ajax({
+                    url: "insert.php",
+                    type: "POST",
+                    data: "nome=" + nome + "&email=" + email,
+                    dataType: "html",
+                    success: function(resposta) {
+                        alert("Sucesso Porra!");
+                    },
+                    error: function() {
+                        alert("Fudeu");
+                    }
+                });
             });
         });
     </script>
-
 </body>
 
 </html>
