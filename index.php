@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <script src="https://jquery.com"></script>
+    <script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
 
 </head>
 
@@ -14,7 +14,7 @@
 
     <script>
         $(document).ready(function(){
-            $("button").click(function() {
+            $("#btnEnviar").click(function() {
                 var nome = $("#nome").val();
                 var email = $("#email").val();
 
