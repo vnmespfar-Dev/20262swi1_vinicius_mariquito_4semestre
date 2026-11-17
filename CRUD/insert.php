@@ -1,6 +1,5 @@
 <?php
 include("conecta.php");
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nome = isset($_POST['nome']) ? $_POST['nome'] : '';
     $email = isset($_POST['email']) ? $_POST['email'] : '';
@@ -13,8 +12,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->bindParam(':email', $email);
 
         $stmt->execute();
-        echo "Cadastro realizado com sucesso!";
+        echo "Cadastro realizado com sucesso bora que bora!";
     } catch (PDOException $e) {
         echo "Erro ao inserir: " . $e->getMessage();
     }
 }
+?>

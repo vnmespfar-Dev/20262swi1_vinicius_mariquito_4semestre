@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
-
+    <?php include("exibeV.php");
+    ?>
 </head>
 
 <body>
