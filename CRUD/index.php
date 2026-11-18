@@ -3,14 +3,13 @@
 
 <head>
     <meta charset="UTF-8">
-    <script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
-    <?php include("exibeV.php");
-    ?>
+    <script src="jquery-4.1.0.min.js"></script>
+    <?php include("exibeV.php"); ?>
 </head>
 
 <body>
-    <input type="text" id="nome" name="nome"><br>
-    <input type="email" id="email" name="email"><br>
+    <input type="text" id="nome" name="nome" placeholder="Nome"><br><br>
+    <input type="email" id="email" name="email" placeholder="E-mail"><br><br>
     <button type="button" id="btnEnviar">Enviar</button>
 
     <script>
@@ -27,18 +26,23 @@
                 $.ajax({
                     url: "insert.php",
                     type: "POST",
-                    data: "nome=" + nome + "&email=" + email,
+                    data: { nome: nome, email: email },
                     dataType: "html",
                     success: function(resposta) {
-                        alert("Sucesso Porra!");
+                        alert("Cadastro realizado com sucesso!");
+                        // Recarrega a página para o PHP processar e mostrar o novo dado na tabela
+                        location.reload(); 
                     },
                     error: function() {
-                        alert("Fudeu");
+                        alert("Erro ao enviar.");
                     }
                 });
             });
         });
     </script>
+    <?php 
+        mostrarTabela(); 
+    ?>
 </body>
 
 </html>
